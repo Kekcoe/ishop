@@ -13,6 +13,7 @@ public class Servlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
+        req.setAttribute("attr1", "serv2");
         PrintWriter out = resp.getWriter();
         out.println("<html><body>");
 //do not call out.close inside hello-world!!!
