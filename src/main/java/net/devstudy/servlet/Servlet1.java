@@ -12,6 +12,7 @@ public class Servlet1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
+        req.setAttribute("attr1", "serv1");
         req.getRequestDispatcher("/hello-world").forward(req, resp);
     }
 }
