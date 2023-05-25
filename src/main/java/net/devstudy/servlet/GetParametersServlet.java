@@ -1,5 +1,7 @@
 package net.devstudy.servlet;
 
+import org.w3c.dom.ls.LSOutput;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ public class GetParametersServlet extends HttpServlet {
         int param2 = Integer.parseInt(req.getParameter("param2"));
         boolean param3 = Boolean.parseBoolean(req.getParameter("param3"));
         String[] param4 = req.getParameterValues("param4");
+        System.out.println();
 // process parameters
     }
     @Override
