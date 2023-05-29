@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(value = "/admin",initParams = {
-        @WebInitParam(name="IP", value="37.144.215.138"),
+        @WebInitParam(name="IP", value="0:0:0:0:0:0:2:1"),
         @WebInitParam(name="ACCESS_KEY", value="12345"),
         @WebInitParam(name="LOGIN", value="admin"),
         @WebInitParam(name="PASSWORD", value="password")
@@ -36,13 +36,12 @@ public class AdminServlet extends HttpServlet {
             if(req.getAttribute("error") != null) {
                 out.println("<h5 style='color:red'>"+req.getAttribute("error")+"</h5>");
             }
-            String ipAddress = req.getHeader("X-FORWARDED-FOR");
-            if (ipAddress == null) {
-                ipAddress = req.getRemoteAddr();
-            } else {
-                ipAddress = ipAddress.contains(",") ? ipAddress.split(",")[0] : ipAddress;
+            String clientIp = getClientIp(req);
+            out.println(clientIp);
+            if (ip.endsWith(clientIp)){
+                System.out.println("Login via ip: " +  clientIp);
+                out.println("OK");
             }
-            out.println(ipAddress);
             out.println(accessKey);
             out.println(login);
             out.println(password);
@@ -54,4 +53,38 @@ public class AdminServlet extends HttpServlet {
             out.println("</form>");
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        if(isValid(req, login, password)) {
+            resp.sendRedirect("/my-private-page");
+        } else {
+            doGet(req, resp);
+        }
+    }
+
+    private boolean isValid(HttpServletRequest req, String login, String password) {
+        if(login == null || login.trim().isEmpty()) {
+            req.setAttribute("error", "Login is required");
+            return false;
+        }
+        if(password == null || password.trim().isEmpty()) {
+            req.setAttribute("error", "Password is required");
+            return false;
+        }
+        return true;
+    }
+
+    String getClientIp(HttpServletRequest req){
+        String ipAddress = req.getHeader("X-FORWARDED-FOR");
+        if (ipAddress == null) {
+            ipAddress = req.getRemoteAddr();
+        } else {
+            ipAddress = ipAddress.contains(",") ? ipAddress.split(",")[0] : ipAddress;
+        }
+        return ipAddress;
+    }
+
 }
