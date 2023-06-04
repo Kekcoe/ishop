@@ -1,7 +1,9 @@
-package net.devstudy;
+package net.devstudy.utils;
 
 public class Constants {
     public static final String CURRENT_SHOPPING_CART = "CURRENT_SHOPPING_CART";
+    public static final int MAX_PRODUCT_COUNT_PER_SHOPPING_CART = 10;
+    public static final int MAX_PRODUCTS_PER_SHOPPING_CART = 20;
 
     public enum Cookie {
         SHOPPING_CART("iSCC", 60 * 60 * 24 *365);

@@ -1,6 +1,5 @@
 package net.devstudy.utils;
 
-import net.devstudy.Constants;
 import net.devstudy.model.ShoppingCart;
 
 import javax.servlet.http.Cookie;

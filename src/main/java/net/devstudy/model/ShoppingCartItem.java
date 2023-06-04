@@ -1,27 +1,30 @@
 package net.devstudy.model;
 
-public class ShoppingCartItem {
-    private int id;
-    private int quantity;
+import java.io.Serializable;
 
-    public ShoppingCartItem(int id, int quantity) {
-        this.id = id;
-        this.quantity = quantity;
+public class ShoppingCartItem implements Serializable {
+    private static final long serialVersionUID = 6436798264138502851L;
+    private int idProduct;
+    private int count;
+
+    public ShoppingCartItem(int idProduct, int count) {
+        this.idProduct = idProduct;
+        this.count = count;
     }
 
-    public int getId() {
-        return id;
+    public int getIdProduct() {
+        return idProduct;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getCount() {
+        return count;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCount(int count) {
+        this.count = count;
     }
 }
