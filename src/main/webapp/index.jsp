@@ -1,22 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, java.text.*" %>
-
-<%!
-    String getFormattedDate()
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
-        return sdf.format(new Date());
-    }
-%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Добро пожаловать, JSP!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Order form</title>
 </head>
 <body>
-<h1>Добро пожаловать!</h1>
-<i>Сегодня <%= getFormattedDate() %></i>
+<form action="/order" method="post">
+    <input type="hidden" name="id_customer" value="<%=request.getParameter("idCustomer") %>">
+    Product name: <input name="product"><br>
+    Product count:<input name="count" type="number"><br>
+    <input type="submit" value="Make order">
+</form>
 </body>
 </html>
