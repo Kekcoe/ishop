@@ -90,4 +90,12 @@ public class ShoppingCart implements Serializable {
         return String.format("ShoppingCart [products=%s, totalCount=%s]", products, totalCount);
     }
 
+    public String getView(){
+        StringBuilder r = new StringBuilder();
+        for (ShoppingCartItem shoppingCartItem : getItems()) {
+            r.append(shoppingCartItem.getIdProduct()).append("-&gt;").append(shoppingCartItem.getCount()).append("<br>");
+        }
+        return r.toString();
+    }
+
 }
